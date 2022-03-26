@@ -1,7 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:new_version_15_march/Modules/Home_Pages/homePage.dart';
 import 'package:new_version_15_march/Modules/Login_Signup/login_screen.dart';
+import 'package:new_version_15_march/Shared/local/cache_helper.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -15,7 +17,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      navigateRoute: LoginScreen(),
+      navigateRoute: CacheHelper.getData(key: 'token') == null
+          ? LoginScreen()
+          : HomePage(),
       text: 'Courses App',
       colors: const [
         Colors.purple,

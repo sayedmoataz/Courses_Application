@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_version_15_march/Modules/Login_Signup/login_screen.dart';
+import 'package:new_version_15_march/Shared/local/cache_helper.dart';
 
 class BottomUserInfo extends StatelessWidget {
   final bool isCollapsed;
@@ -81,7 +83,14 @@ class BottomUserInfo extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          CacheHelper.deleteData(key: 'token');
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                              (route) => false);
+                        },
                         icon: const Icon(
                           Icons.logout,
                           color: Colors.white,
